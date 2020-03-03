@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 // import ethersProvider  from "../ethereum/ether";
 import { instance } from "../ethereum/factory";
-
+import { accountsList } from "../ethereum/accountsList"
 
 class Register extends Component {
   constructor(props) {
@@ -28,7 +28,8 @@ class Register extends Component {
     console.log("SurveyNumber is ",this.state.surveyNumber);
     console.log("CurrentOwner is ",this.state.CurrentOwner);
     console.log("MArketValue is ",this.state.marketValue);
-
+    // console.log("This is accountList from there", accountsList);
+    
     
     const propertyId = await instance.computeId(this.state.state, this.state.district, this.state.village, this.state.surveyNumber);
 
