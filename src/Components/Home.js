@@ -15,33 +15,39 @@ class Home extends Component {
 
     };
 
-    componentWillMount(){
-        this.loadAssets()
-        console.log("Property array: ",this.propertyInfo);
+     async componentDidMount(){
+         await this.loadAssets()
+
+        console.log("Property array: ",this.state.propertyInfo);
     }
 
-    async loadAssets(){
+     async loadAssets(){
 
-        if(this.state.account === undefined){
+        if(this.state.account == undefined){
             this.setState({
                 account : accountsList
             })
         }
 
         let iproperties = instance.viewAssets();
+        console.log("This is iproperties", iproperties);
+        
         this.setState({
             properties : iproperties
         })
+        
 
         for(let item of this.state.properties){
-            this.propertyDetails(item);
+            console.log("In for loop");
+            
+             await this.propertyDetails(item);
         }
     }
 
     async propertyDetails(property){
         let details = await instance.landInfoOwner(property)
-        console.log("Land Details",details);
-
+        console.log("Property Detials",details);
+        
         let state = true;
         let choiceButton = false;
         let buttonEnabled = details[4];
@@ -59,6 +65,7 @@ class Home extends Component {
         this.setState({
             propertyInfo
         })
+        
         
         return true;
     }
