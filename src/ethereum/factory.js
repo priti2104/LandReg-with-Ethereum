@@ -3,7 +3,7 @@ import ethersProvider from './ether';
 import { abiCT } from "./contractTools";
 
 const ethers = require('ethers');
-const address = '0xea93ad093ac070b7226648c4dae4e1bbfb90141f'; //kovan address
+const address = '0x4d3411c4b8bfce2b876e03ff785771d4dd375eeb'; //kovan address
 
 const metamaskSigner = ethersProvider.getSigner();
 

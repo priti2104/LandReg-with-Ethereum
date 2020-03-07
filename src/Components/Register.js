@@ -5,7 +5,6 @@ import { accountsList } from "../ethereum/accountsList"
 const ethers = require('ethers');
 
 
-
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +18,7 @@ class Register extends Component {
 
      };
   }
+  
   mySubmitHandler =async (event) => {
     event.preventDefault();
     //alert("You are submitting " + this.state.CurrentOwner);
@@ -35,15 +35,13 @@ class Register extends Component {
     
     
     const propertyId = await instance.computeId(this.state.state, this.state.district, this.state.village, this.state.surveyNumber);
-    // const nId = await ethers.utils.propertyId.isZero();
-    let tId = propertyId.toNumber()
-    console.log("nId------>",tId);
-    
-    
+    const tId = propertyId.toString()
+    const id = ethers.utils.hexDataLength(tId);
+    console.log("*******Converted Id********",id);
     
 
    const transaction = await instance.Registration(this.state.state, this.state.district, this.state.village, 
-      this.state.surveyNumber, this.state.CurrentOwner, this.state.marketValue, tId);
+      this.state.surveyNumber, this.state.CurrentOwner, this.state.marketValue, propertyId);
             
       if(!transaction){
         console.log("Transaction failed");
@@ -54,9 +52,16 @@ class Register extends Component {
         console.log("Transaction Successful");
         
       }
+      
+    
+      
 
   };
 
+  // stateChangeHandler = (event) => {
+  //   this.setState({
+  //       state: event.target.value});
+  // }
   stateChangeHandler = (event) => {
     this.setState({
         state: event.target.value});

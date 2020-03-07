@@ -5,7 +5,7 @@ import {instance} from '../ethereum/factory';
 import  ethersProvider  from "../ethereum/ether";
 import {accountsList} from '../ethereum/accountsList';
 import { string, any } from 'prop-types';
-var converter = require('hex2dec');
+// var converter = require('hex2dec');
 
 
 class Home extends Component {
