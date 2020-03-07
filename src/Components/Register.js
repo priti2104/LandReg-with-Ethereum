@@ -2,6 +2,9 @@ import React,{Component} from 'react';
 // import ethersProvider  from "../ethereum/ether";
 import { instance } from "../ethereum/factory";
 import { accountsList } from "../ethereum/accountsList"
+const ethers = require('ethers');
+
+
 
 class Register extends Component {
   constructor(props) {
@@ -32,9 +35,15 @@ class Register extends Component {
     
     
     const propertyId = await instance.computeId(this.state.state, this.state.district, this.state.village, this.state.surveyNumber);
+    // const nId = await ethers.utils.propertyId.isZero();
+    let tId = propertyId.toNumber()
+    console.log("nId------>",tId);
+    
+    
+    
 
    const transaction = await instance.Registration(this.state.state, this.state.district, this.state.village, 
-      this.state.surveyNumber, this.state.CurrentOwner, this.state.marketValue, propertyId);
+      this.state.surveyNumber, this.state.CurrentOwner, this.state.marketValue, tId);
             
       if(!transaction){
         console.log("Transaction failed");
