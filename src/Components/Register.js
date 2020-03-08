@@ -18,30 +18,19 @@ class Register extends Component {
         marketValue:''
 
      };
-     this.handleChange = this.handleChange.bind(this);
-     this.handleSubmit = this.handleSubmit.bind(this);
- 
   }
-  handleChange(event){
-    this.setState({state : event.target.value});
-    this.setState({district : event.target.value});
-    this.setState({village : event.target.value});
-    this.setState({surveyNumber : event.target.value});
-    this.setState({CurrentOwner : event.target.value});
-    this.setState({marketValue : event.target.value});
-  }
-  mySubmitHandler =async (event) => {
+    mySubmitHandler =async (event) => {
     event.preventDefault();
-    alert("You are submitting " + this.state.CurrentOwner);
+    //alert("You are submitting " + this.state.CurrentOwner);
 
     // const accounts = ethersProvider.listAccounts();
 
-    // console.log("State is ",this.state.state);
-    // console.log("District is ",this.state.district);
-    // console.log("Village is ",this.state.village);
-    // console.log("SurveyNumber is ",this.state.surveyNumber);
-    // console.log("CurrentOwner is ",this.state.CurrentOwner);
-    // console.log("MArketValue is ",this.state.marketValue);
+    console.log("State is ",this.state.state);
+    console.log("District is ",this.state.district);
+    console.log("Village is ",this.state.village);
+    console.log("SurveyNumber is ",this.state.surveyNumber);
+    console.log("CurrentOwner is ",this.state.CurrentOwner);
+    console.log("MArketValue is ",this.state.marketValue);
     // console.log("This is accountList from there", accountsList);
     
     
@@ -50,9 +39,6 @@ class Register extends Component {
     let tId = propertyId.toNumber()
     console.log("nId------>",tId);
     
-    
-    
-
    const transaction = await instance.Registration(this.state.state, this.state.district, this.state.village, 
       this.state.surveyNumber, this.state.CurrentOwner, this.state.marketValue, tId);
             
@@ -66,8 +52,41 @@ class Register extends Component {
         
       }
 
-  };
 
+
+  };
+  stateChangeHandler = (event) => {
+    this.setState({
+        state: event.target.value});
+  }
+
+  districtChangeHandler = (event) => {
+    this.setState({
+        district: event.target.value});
+  }
+
+  villageChangeHandler = (event) => {
+    this.setState({
+        village: event.target.value});
+  }
+
+  surveyNumberChangeHandler = (event) => {
+    this.setState({
+        surveyNumber: event.target.value});
+  }
+
+  CurrentOwnerChangeHandler = (event) => {
+    this.setState({
+        CurrentOwner: event.target.value});
+  }
+
+  marketValueChangeHandler = (event) => {
+    this.setState({
+        marketValue: event.target.value});
+  }
+
+      
+  
 
   render() {
     return (
@@ -76,42 +95,42 @@ class Register extends Component {
       <label>state</label>
       <input type='text'
       value={this.state.state}
-        onChange={this.handleChange}/>
+        onChange={this.stateChangeHandler}/>
       <br/>
       <br/>
 
       <label>district</label>
       <input type='text' size="50"
       value={this.state.district}
-        onChange={this.handleChange}/>
+        onChange={this.districtChangeHandler}/>
       <br/>
       <br/>
 
       <label>village</label>
       <input type='text' size="50"
       value={this.state.village}
-        onChange={this.handleChange}/>
+        onChange={this.villageChangeHandler}/>
       <br/>
       <br/>
 
       <label>surveyNumber</label>
       <input type='text' size="50"
       value={this.state.surveyNumber}
-        onChange={this.handleChange}/>
+        onChange={this.surveyNumberChangeHandler}/>
       <br/>
       <br/>
 
       <label>CurrentOwner</label>
       <input type='text' size="50"
       value={this.state.CurrentOwner}
-        onChange={this.handleChange}/>
+        onChange={this.CurrentOwnerChangeHandler}/>
       <br/>
       <br/>
 
       <label>marketValue</label>
       <input type='text'
       value={this.state.marketValue} size="50"
-        onChange={this.handleChange}/>
+        onChange={this.marketValueChangeHandler}/>
       <br/>
       <br/>
 
