@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 // import ethersProvider  from "../ethereum/ether";
 import { instance } from "../ethereum/factory";
 import { accountsList } from "../ethereum/accountsList"
+import { number } from 'prop-types';
 const ethers = require('ethers');
 
 
@@ -28,20 +29,35 @@ class Register extends Component {
     console.log("State is ",this.state.state);
     console.log("District is ",this.state.district);
     console.log("Village is ",this.state.village);
-    console.log("SurveyNumber is ",this.state.surveyNumber);
+    console.log("SurveyNumber is ",this.state.surveyNumber,'  ',typeof this.state.surveyNumber);
     console.log("CurrentOwner is ",this.state.CurrentOwner);
-    console.log("MArketValue is ",this.state.marketValue);
+    console.log("MArketValue is ",this.state.marketValue,'  ',typeof this.state.marketValue);
     // console.log("This is accountList from there", accountsList);
     
-    
-    const propertyId = await instance.computeId(this.state.state, this.state.district, this.state.village, this.state.surveyNumber);
-    // const nId = await ethers.utils.propertyId.isZero();
-    let tId = propertyId.toNumber()
-    console.log("nId------>",tId);
+      const temp1 = this.state.surveyNumber;
+
+      //SurveyNumber to be passed
+      let tempSurvey = Number(temp1);
+      console.log('tempSurvey',tempSurvey);
+      console.log('typeof tempSurvey',typeof tempSurvey);
+      
+      let temp2 = this.state.marketValue;
+
+      //MarketValue to be passed
+      let tempMarketValue = Number(temp2);
+      console.log('tempMarketValue',tempMarketValue);
+      console.log('typeof tempMarketValue',typeof tempMarketValue);
+      
+      
+      // console.log("tempSurvey",tempSurvey,"typeof tempSurvey",typeof tempSurvey);
+    let propertyId = await instance.computeId(this.state.state, this.state.district, this.state.village, tempSurvey);
+    let tId = Number(propertyId);
+    console.log("nId------>",tId,"typeOfId",typeof tId);
+
     
    const transaction = await instance.Registration(this.state.state, this.state.district, this.state.village, 
-      this.state.surveyNumber, this.state.CurrentOwner, this.state.marketValue, tId);
-            
+      tempSurvey, this.state.CurrentOwner, tempMarketValue, tId);
+
       if(!transaction){
         console.log("Transaction failed");
         

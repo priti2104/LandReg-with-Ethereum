@@ -30,9 +30,10 @@ class Home extends Component {
                 account : accountsList
             })
         }
-        let iproperties = [];
-        iproperties.push(instance.viewAssets());
-        console.log("This is iproperties", iproperties);
+        let iproperties = any; 
+        // iproperties.push(instance.viewAssets());
+        iproperties = await instance.viewAssets();
+        console.log("This is iproperties it containsid", iproperties);
         
         this.setState({
             properties : iproperties
@@ -41,6 +42,7 @@ class Home extends Component {
 
         for(let item of iproperties){
             console.log("In for loop");
+            console.log("value of item variable is",typeof item);
             
              await this.propertyDetails(item);
         }
@@ -67,6 +69,7 @@ class Home extends Component {
         this.setState({
             propertyInfo
         })
+        console.log('this.state.propertyInfo',this.state.propertyInfo);
         
         
         return true;
