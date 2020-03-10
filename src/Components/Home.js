@@ -82,7 +82,7 @@ class Home extends Component {
         return (
             <div>
                 This is the home page
-                
+                                
             </div>
         );
     }
