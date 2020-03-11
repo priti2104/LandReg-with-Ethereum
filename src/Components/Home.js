@@ -33,6 +33,7 @@ class Home extends Component {
         let iproperties = any; 
         // iproperties.push(instance.viewAssets());
         iproperties = await instance.viewAssets();
+    
         console.log("This is iproperties it containsid", iproperties);
         
         this.setState({
@@ -44,7 +45,7 @@ class Home extends Component {
             console.log("In for loop");
             console.log("value of item variable is",typeof item);
             
-             await this.propertyDetails(item);
+             await this.propertyDetails(item.toNumber());
         }
     }
 
@@ -63,7 +64,7 @@ class Home extends Component {
         }
 
         let propertyInfo = [...this.state.propertyInfo];
-        propertyInfo.push(property, details[0],details[1],details[2],details[3],buttonEnabled,details[5],
+        propertyInfo.push(property, details[0],details[1],details[2],details[3].toNumber(),buttonEnabled,details[5],
             state,details[6],choiceButton)
             
         this.setState({
@@ -82,7 +83,7 @@ class Home extends Component {
         return (
             <div>
                 This is the home page
-                                
+            <p>item[</p>
             </div>
         );
     }

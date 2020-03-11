@@ -2,10 +2,74 @@
 
 export const abiCT=[
 	{
-		"inputs": [],
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_superAdmin",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_village",
+				"type": "string"
+			}
+		],
+		"name": "addSuperAdmin",
+		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "property",
+				"type": "uint256"
+			}
+		],
+		"name": "buyProperty",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "property",
+				"type": "uint256"
+			}
+		],
+		"name": "makeAvailable",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "property",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum landRegistration.reqStatus",
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"name": "processRequest",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"constant": false,
@@ -62,36 +126,22 @@ export const abiCT=[
 		"constant": false,
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_superAdmin",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_village",
-				"type": "string"
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
 			}
 		],
-		"name": "addSuperAdmin",
+		"name": "requstToLandOwner",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "property",
-				"type": "uint256"
-			}
-		],
-		"name": "buyProperty",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"constant": true,
@@ -245,56 +295,6 @@ export const abiCT=[
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "property",
-				"type": "uint256"
-			}
-		],
-		"name": "makeAvailable",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "property",
-				"type": "uint256"
-			},
-			{
-				"internalType": "enum landRegistration.reqStatus",
-				"name": "status",
-				"type": "uint8"
-			}
-		],
-		"name": "processRequest",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "requstToLandOwner",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
