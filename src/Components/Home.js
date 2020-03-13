@@ -16,10 +16,10 @@ class Home extends Component {
         propertyInfo : []
 
     };
-
+    
      async componentDidMount(){
          await this.loadAssets()
-
+        // this.loadAssets()
         console.log("Property array: ",this.state.propertyInfo);
     }
 
@@ -50,8 +50,8 @@ class Home extends Component {
     }
 
     async propertyDetails(property){
-        let details = await instance.landInfoOwner(property)
-        console.log("Property Detials",details);
+        let details = await instance.landInfoOwner(property) //Ikde details mdhe ghetoe value via function of smrtcontct
+        // console.log("Property Detials",details);
         
         let state = true;
         let choiceButton = false;
@@ -64,8 +64,27 @@ class Home extends Component {
         }
 
         let propertyInfo = [...this.state.propertyInfo];
-        propertyInfo.push(property, details[0],details[1],details[2],details[3].toNumber(),buttonEnabled,details[5],
-            state,details[6],choiceButton)
+        // propertyInfo.push(property, details[0],details[1],details[2],details[3].toNumber(),buttonEnabled,details[5],
+        //     state,details[6],choiceButton) //**** Ikde Push krtoe 
+         let displayDetails =propertyInfo.push({
+             id:property,
+             State:details[0],
+             District:details[1],
+            Village:details[2],
+            SurveyNo:details[3].toNumber(),
+            isAvailable:buttonEnabled,
+            Requester:details[5],
+            SomeDetail:details[6],
+            CButton:choiceButton
+         })
+
+         let bagOfData=any;
+         bagOfData = propertyInfo;
+         console.log('this is bagOfData',bagOfData);
+         console.log('');
+         console.log('');
+        //  console.log('displayDetails',displayDetails);
+            
             
         this.setState({
             propertyInfo
@@ -76,17 +95,43 @@ class Home extends Component {
         return true;
     }
 
+    /*{Object.entries(subjects).map(([key, subject], i) => (
+    <li className="travelcompany-input" key={i}>
+        <span className="input-label">key: {i} Name: {subject.name}</span>
+    </li>
+))}
+ */
 
 
 
-    render() {
-        return (
-            <div>
-                This is the home page
-            <p>item[</p>
-            </div>
-        );
-    }
+render (){
+    let details= this.state.propertyInfo;
+    // console.log('this.bagOfData',this.bagOfData);
+    
+    // console.log('detials in render',details);
+    
+    let orgsData = details ? (
+        details.map((details, i)=>{
+            return[
+                <div key ={i}>
+        <p>{details.property}</p>  
+            <p>state:{details.State}</p>
+            <p>district:{details.District}</p>
+            <p>village:{details.Village}</p>
+            <p>surveyNumber:{details.SurveyNo}</p>
+
+         </div>
+            ];
+        })
+    ):(
+        <div>No data present
+        </div>
+    )
+    return (<div>{orgsData}</div>) ;
+
+
+};
+
 }
 
 export default Home;
