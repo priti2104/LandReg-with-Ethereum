@@ -9,13 +9,16 @@ import { string, any } from 'prop-types';
 
 
 class Home extends Component {
+
     state={
         accounts : [],
         account : '',
         properties : [],
-        propertyInfo : []
+        propertyInfo : [],
+        displayInfo:[]
 
     };
+    
     
      async componentDidMount(){
          await this.loadAssets()
@@ -84,8 +87,11 @@ class Home extends Component {
          console.log('');
          console.log('');
         //  console.log('displayDetails',displayDetails);
-            
-            
+        let displayInfo = [...this.state.displayInfo]; 
+        displayInfo = bagOfData;
+        this.setState({
+            displayInfo
+        })    
         this.setState({
             propertyInfo
         })
@@ -95,12 +101,11 @@ class Home extends Component {
         return true;
     }
 
-    /*{Object.entries(subjects).map(([key, subject], i) => (
-    <li className="travelcompany-input" key={i}>
-        <span className="input-label">key: {i} Name: {subject.name}</span>
-    </li>
-))}
- */
+
+    async makeAvailableHandler(id,i){
+
+    
+    }
 
 
 
@@ -114,12 +119,14 @@ render (){
         details.map((details, i)=>{
             return[
                 <div key ={i}>
-        <p>{details.property}</p>  
+        <p>Property ID :{details.id}</p>  
             <p>state:{details.State}</p>
             <p>district:{details.District}</p>
             <p>village:{details.Village}</p>
             <p>surveyNumber:{details.SurveyNo}</p>
-
+            <button disabled={details.Requester} onClick={this.makeAvailableHandler()}>make Available</button>
+            <hr/>
+            <br/>
          </div>
             ];
         })
