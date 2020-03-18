@@ -15,8 +15,8 @@ class Home extends Component {
         account : '',
         properties : [],
         propertyInfo : [],
-        displayInfo:[]
-
+        displayInfo:[],
+        count:''
     };
     
     
@@ -80,12 +80,15 @@ class Home extends Component {
             SomeDetail:details[6],
             CButton:choiceButton
          })
+         console.log('display details',displayDetails,'type of display details',typeof displayDetails);
+         
+        
 
          let bagOfData=any;
          bagOfData = propertyInfo;
-         console.log('this is bagOfData',bagOfData);
-         console.log('');
-         console.log('');
+        //  console.log('this is bagOfData',bagOfData);
+        //  console.log('');
+        //  console.log('');
         //  console.log('displayDetails',displayDetails);
         let displayInfo = [...this.state.displayInfo]; 
         displayInfo = bagOfData;
@@ -95,16 +98,36 @@ class Home extends Component {
         this.setState({
             propertyInfo
         })
-        console.log('this.state.propertyInfo',this.state.propertyInfo);
+        // console.log('this.state.propertyInfo',this.state.propertyInfo);
         
         
         return true;
     }
 
-
-    async makeAvailableHandler(id,i){
-
     
+    async makeAvailableHandler(id,i){
+      let Id = id;
+      let index =i;
+      let a;
+      let propertyInfo;
+      propertyInfo = [...this.state.propertyInfo];
+      console.log('Here is propInfo',propertyInfo);
+      
+      for(a=0;a<3;a++){
+          if(index==a){
+            // alert('In the console with '+a+' '+'ID is '+Id)
+            console.log('In the loop with index ',a,' Id is ',Id);
+            console.log('status of the land ',a,' Data is',propertyInfo[a].isAvailable);
+            propertyInfo[a].isAvailable = true;
+            await instance.makeAvailable(Id);              
+          }
+
+      }
+
+      this.setState({
+          propertyInfo
+      })
+
     }
 
 
@@ -124,7 +147,8 @@ render (){
             <p>district:{details.District}</p>
             <p>village:{details.Village}</p>
             <p>surveyNumber:{details.SurveyNo}</p>
-            <button disabled={details.Requester} onClick={this.makeAvailableHandler()}>make Available</button>
+            {/* <button>make Available</button> */}
+            <button onClick={()=>this.makeAvailableHandler(details.id,i)}>make Available</button>
             <hr/>
             <br/>
          </div>

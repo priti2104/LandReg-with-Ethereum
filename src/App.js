@@ -13,11 +13,7 @@ import Navigation from './Components/Navigation';
 class App extends Component {
 
   // async componentDidMount(){
-  //   window.ethereum.on('accountChanged', function(account) {
-  //     const signer=ethersProvider.getSigner(0);
-  //     const address= addressCT;
-  //     const abi= abiCT;    
-  //   })
+  //   window.ethereum.enable()
 
   // }
 
