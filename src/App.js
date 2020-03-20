@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Register from './Components/Register';
 import Home from './Components/Home';
 import Navigation from './Components/Navigation';
+import Search from './Components/Search';
 // const ethers = require('ethers');
 class App extends Component {
 
@@ -25,6 +26,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/register" component={Register} />
+            <Route path="/search" component={Search} />
           </Switch>
         </div>
       </BrowserRouter>
