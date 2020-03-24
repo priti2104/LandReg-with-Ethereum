@@ -71,14 +71,15 @@ class Home extends Component {
         //     state,details[6],choiceButton) //**** Ikde Push krtoe 
          let displayDetails =propertyInfo.push({
              id:property,
-             State:details[0],
-             District:details[1],
-            Village:details[2],
-            SurveyNo:details[3].toNumber(),
-            isAvailable:buttonEnabled,
-            Requester:details[5],
-            SomeDetail:details[6],
-            CButton:choiceButton
+             State:details[0],          //items[0]
+             District:details[1],       //items[1]    
+            Village:details[2],         //items[2]
+            SurveyNo:details[3].toNumber(), //items[3]
+            isAvailable:buttonEnabled,      //items[4]
+            Requester:details[5], 
+            stateBool:state,                                //items[5]
+            SomeDetail:details[6],          //items[6]
+            CButton:choiceButton            //items[7]
          })
          console.log('display details',displayDetails,'type of display details',typeof displayDetails);
          
@@ -113,7 +114,7 @@ class Home extends Component {
       propertyInfo = [...this.state.propertyInfo];
       console.log('Here is propInfo',propertyInfo);
       
-      for(a=0;a<3;a++){
+      for(a=0;a<10;a++){
           if(index==a){
             // alert('In the console with '+a+' '+'ID is '+Id)
             console.log('In the loop with index ',a,' Id is ',Id);
@@ -130,13 +131,47 @@ class Home extends Component {
 
     }
 
+    async acceptRequest(id,i){
+        let Id = id;
+        let index=i;
+        let a;
+        let propertyInfo;
+        propertyInfo = [...this.state.propertyInfo];
+        //    this.propertyInfo[i][9] = true;
+        console.log('propertyInfo',propertyInfo);
+        for(a=0;a<10;a++){
+            if (a==i) {
+                propertyInfo[a].CButton=true;
+                await instance.processRequest(Id,3)
+            }
+        }
+        
+
+    }
+
+    async rejectRequest(id,i){
+        let Id = id;
+        let index=i;
+        let a;
+        let propertyInfo;
+        propertyInfo = [...this.state.propertyInfo];
+        //    this.propertyInfo[i][9] = true;
+        console.log('propertyInfo',propertyInfo);
+        for(a=0;a<10;a++){
+            if (a==i) {
+                propertyInfo[a].CButton=false;
+                await instance.processRequest(Id,3)
+            }
+        }
+        
+
+    }
+
 
 
 render (){
     let details= this.state.propertyInfo;
-    // console.log('this.bagOfData',this.bagOfData);
-    
-    // console.log('detials in render',details);
+
     
     let orgsData = details ? (
         details.map((details, i)=>{
@@ -149,6 +184,19 @@ render (){
             <p>surveyNumber:{details.SurveyNo}</p>
             {/* <button>make Available</button> */}
             <button onClick={()=>this.makeAvailableHandler(details.id,i)}>make Available</button>
+            <div>
+            {details.stateBool && details.SomeDetail==1 ? (
+          <div>
+        <p>You have a request from {details.Requester}</p><br/>
+              <button onClick={()=>this.acceptRequest(details.id,i)}>Accept</button><br/>
+              <button onClick={()=>this.rejectRequest(details.id,i)}>Reject</button>
+            </div>
+            ) : (
+         <div>
+            <p></p>
+        </div>
+        )}
+            </div>
             <hr/>
             <br/>
          </div>

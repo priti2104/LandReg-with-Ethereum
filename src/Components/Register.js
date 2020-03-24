@@ -44,10 +44,19 @@ class Register extends Component {
       
       
       let temp2 = this.state.marketValue;
-           
+      let landMarketValue = ethers.utils.parseEther(temp2);
+      let stringMarketValue = landMarketValue.toString()     
+      console.log('landMarketValue is', landMarketValue.toString())
+      
+      
+
+
+
+
+
 
       //MarketValue to be passed
-      let tempMarketValue = parseInt(temp2);
+      // let tempMarketValue = parseInt(temp2);
       // console.log('tempMarketValue',tempMarketValue);
       // console.log('typeof tempMarketValue',typeof tempMarketValue);
       
@@ -61,7 +70,7 @@ class Register extends Component {
     
     
       const transaction1 = await instance.Registration(this.state.state, this.state.district, this.state.village,temp1,
-                            this.state.CurrentOwner, tempMarketValue, uniqueId)
+                            this.state.CurrentOwner, stringMarketValue, uniqueId)
 
       if(!transaction1){
         console.log("Transaction failed");
