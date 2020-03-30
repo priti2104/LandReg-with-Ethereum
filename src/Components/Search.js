@@ -66,10 +66,10 @@ class Search extends Component {
           availableForRequest: true
         })
       }
-      if (landDetails[3] == accountsList && landDetails[4] == 3) {
+      if (landDetails[3] == await accountsList && landDetails[4] == 3) {
         console.log('In buy wala condition');
         
-        this.setState({
+       await this.setState({
           availableForBuy: true
         })
         console.log('Setting buy state to true',this.state.availableForBuy);
