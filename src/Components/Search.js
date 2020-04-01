@@ -105,14 +105,20 @@ class Search extends Component {
   async buyProperty(id){
     let landInfo = [...this.state.landInfo];
     console.log('landinfo', landInfo);
-    let mValue = parseInt(landInfo[1]);
-    console.log('mValue',mValue);
-    mValue += (mValue/10);
-    let StringValue=  mValue.toString();
-    console.log("mValue:",StringValue)
-
+    // let mValue = parseInt(landInfo[1]);
+    // console.log('mValue',mValue);
+    // mValue = (mValue/10);
+    // let StringValue=  mValue.toString();
+    // console.log("mValue:",StringValue)
+    let mValue = landInfo[1].toString()
+    console.log('landInfo[1]',landInfo[1]);
+    console.log('landInfo[1] String value',landInfo[1].toString())
+    
     try {
-      landInfo = await instance.buyProperty(id);
+      landInfo = await instance.buyProperty(id, {
+                                              gasLimit: 1927,
+                                              value: landInfo[1]
+                                            })
       this.setState({
         buttonTwoDisable : true
       })
